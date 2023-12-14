@@ -33,7 +33,7 @@ class OnboardingPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 42.0, 
+                    horizontal: 32.0, 
                     vertical: 16.0
                   ),
                   child: PrimaryButton(
@@ -42,9 +42,7 @@ class OnboardingPage extends StatelessWidget {
                   ),
                 ),
                 CustomListLinks(
-                  onPressed: (){
-                    print('click');
-                  },
+                  onPressed: (){},
                   children: [
                     const Text(
                       'Already have account? ',
@@ -58,7 +56,7 @@ class OnboardingPage extends StatelessWidget {
                     )
                   ],
                 ),
-                const SizedBox(height: 20.0),
+                const SizedBox(height: 24.0),
               ],
             ),
           )
