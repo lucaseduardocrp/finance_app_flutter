@@ -1,5 +1,6 @@
 import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
+import 'package:finance_app/common/widgets/custom_list_links.dart';
 import 'package:finance_app/common/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
@@ -40,9 +41,20 @@ class OnboardingPage extends StatelessWidget {
                     onPressed: (){},
                   ),
                 ),
-                Text(
-                  'Already have account? Sign in',
-                  style: AppTextStyles.smallText.apply(color: AppColors.dark100)
+                CustomListLinks(
+                  onPressed: (){},
+                  children: [
+                    const Text(
+                      'Already have account? ',
+                      style: AppTextStyles.smallText,
+                    ),
+                    Text(
+                      'Already have account? ',
+                      style: AppTextStyles.smallText.copyWith(
+                        color: AppColors.primaryColor100
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(height: 20.0),
               ],
@@ -53,7 +65,3 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 }
-
-
-
-        
