@@ -13,4 +13,9 @@ class AppColors {
     AppColors.primaryColor100, 
     AppColors.primaryColor200
   ];
+
+  static const List<Color> secondGradient = [
+    Color(0xFFB5B5B5), 
+    Color(0xFF7F7F7F)
+  ];
 }
