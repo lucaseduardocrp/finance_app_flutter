@@ -13,7 +13,7 @@ class OnboardingPage extends StatelessWidget {
         children: [
           const SizedBox(height: 48.0),
           Expanded(
-            flex: 3,
+            flex: 2,
            child: Image.asset('assets/images/man.png', fit: BoxFit.contain),
           ),
           Container(
@@ -31,7 +31,7 @@ class OnboardingPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 32.0, 
+                    horizontal: 42.0, 
                     vertical: 16.0
                   ),
                   child: PrimaryButton(
@@ -57,6 +57,8 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String text;
 
+  final BorderRadius _borderRadius = const BorderRadius.all(Radius.circular(38.0));
+
   const PrimaryButton({
     Key? key,
     this.onPressed,
@@ -66,25 +68,20 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: const BorderRadius.all(Radius.circular(38.0)),
       child: Ink(
+        height: 54.0,
         decoration: BoxDecoration(
+          borderRadius: _borderRadius,
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: onPressed != null ? AppColors.primaryGradient : AppColors.secondGradient
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(38.0))
         ),
         child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.circular(38.0)),
+          borderRadius: _borderRadius,
           onTap: onPressed,
-          child: Container(
-            height: 64.0,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(38.0))
-            ),
+          child: Align(
             child: Text(
               text,
               style: AppTextStyles.mediumText18.copyWith(color: AppColors.white),
