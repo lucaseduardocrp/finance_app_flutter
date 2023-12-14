@@ -42,14 +42,16 @@ class OnboardingPage extends StatelessWidget {
                   ),
                 ),
                 CustomListLinks(
-                  onPressed: (){},
+                  onPressed: (){
+                    print('click');
+                  },
                   children: [
                     const Text(
                       'Already have account? ',
                       style: AppTextStyles.smallText,
                     ),
                     Text(
-                      'Already have account? ',
+                      'Sign In',
                       style: AppTextStyles.smallText.copyWith(
                         color: AppColors.primaryColor100
                       ),

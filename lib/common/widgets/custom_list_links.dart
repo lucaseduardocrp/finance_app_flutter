@@ -7,7 +7,7 @@ class CustomListLinks extends StatelessWidget {
   const CustomListLinks({
     Key? key,
     required this.children,
-    this.onPressed,
+    required this.onPressed,
   }): super(key: key);
 
   @override
