@@ -16,7 +16,7 @@ class OnboardingPage extends StatelessWidget {
           const SizedBox(height: 48.0),
           Expanded(
             flex: 2,
-           child: Image.asset('assets/images/man.png', fit: BoxFit.contain),
+            child: Image.asset('assets/images/man.png', fit: BoxFit.contain),
           ),
           Container(
             color: AppColors.white,
@@ -61,7 +61,7 @@ class OnboardingPage extends StatelessWidget {
             ),
           )
         ],
-      ),
+      ),   
     );
   }
 }
