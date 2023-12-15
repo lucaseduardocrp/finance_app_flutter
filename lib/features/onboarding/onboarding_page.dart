@@ -50,7 +50,7 @@ class OnboardingPage extends StatelessWidget {
                     ),
                     Text(
                       'Sign In',
-                      style: AppTextStyles.smallText.copyWith(
+                      style: AppTextStyles.smallText.apply(
                         color: AppColors.primaryColor100
                       ),
                     )
