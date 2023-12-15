@@ -2,37 +2,41 @@ import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatefulWidget {
+class CustomPasswordFormField extends StatefulWidget {
   final TextEditingController? controller;
   final EdgeInsetsGeometry? padding;
   final TextInputAction? textInputAction;
   final TextCapitalization? textCapitalization;
   final TextInputType? textInputType;
+  final Widget? sufixIcon;
   final int? maxLength;
   final String? hintText;
   final String? labelText;
 
-  const CustomTextFormField({
+  const CustomPasswordFormField({
     Key? key,
     this.controller,
     this.padding,
     this.textInputAction,
     this.textCapitalization,
     this.textInputType,
+    this.sufixIcon,
     this.maxLength,
     this.hintText,
     this.labelText,
   }): super(key: key);
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+  State<CustomPasswordFormField> createState() => _CustomPasswordFormFieldState();
 }
 
-class _CustomTextFormFieldState extends State<CustomTextFormField>{
+class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
   final defaultBorder = const OutlineInputBorder();
 
+  bool isHiden = true;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Padding(
       padding: widget.padding ?? const EdgeInsets.symmetric(
         vertical: 12.0
@@ -43,7 +47,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField>{
         textInputAction: widget.textInputAction,
         maxLength: widget.maxLength,
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
+        obscureText: isHiden,
         decoration: InputDecoration(
+          suffixIcon: InkWell(
+            onTap: (){
+              setState(() {
+                isHiden = !isHiden;
+              });
+            },
+            child: Icon(
+              isHiden == true ? Icons.visibility : Icons.visibility_off, 
+              color: AppColors.primaryColor100 
+            ),
+          ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: widget.labelText?.toUpperCase(),
           labelStyle: AppTextStyles.inputLabelText.apply(
