@@ -1,5 +1,6 @@
 import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
+import 'package:finance_app/common/utils/uppercase_text_formatter.dart';
 import 'package:finance_app/common/widgets/custom_list_links.dart';
 import 'package:finance_app/common/widgets/custom_password_form_field.dart';
 import 'package:finance_app/common/widgets/custom_text_form_field.dart';
@@ -41,11 +42,14 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 42.0),
-          const CustomTextFormField(
+          CustomTextFormField(
             labelText: 'Your name',
             hintText: 'John Doe',
             textInputType: TextInputType.name,
             textInputAction: TextInputAction.next,
+            inputFormatter: [
+              UpperCaseTextFormatter(),
+            ],
           ),
           const CustomTextFormField(
             labelText: 'Your email',

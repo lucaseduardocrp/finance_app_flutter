@@ -80,7 +80,7 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
           ),
           enabledBorder: defaultBorder.copyWith(
             borderSide: const BorderSide(
-              color: AppColors.primaryColor200
+              color: AppColors.primaryColor100
             )
           ),
           border: defaultBorder,

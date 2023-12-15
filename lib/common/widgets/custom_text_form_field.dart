@@ -1,6 +1,7 @@
 import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
@@ -8,6 +9,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final TextCapitalization? textCapitalization;
   final TextInputType? textInputType;
+  final List<TextInputFormatter>? inputFormatter;
   final int? maxLength;
   final String? hintText;
   final String? labelText;
@@ -19,6 +21,7 @@ class CustomTextFormField extends StatefulWidget {
     this.textInputAction,
     this.textCapitalization,
     this.textInputType,
+    this.inputFormatter,
     this.maxLength,
     this.hintText,
     this.labelText,
@@ -43,6 +46,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField>{
         textInputAction: widget.textInputAction,
         maxLength: widget.maxLength,
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
+        inputFormatters: widget.inputFormatter,
         style: const TextStyle(
           height: 1.0
         ),
@@ -64,7 +68,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField>{
           ),
           enabledBorder: defaultBorder.copyWith(
             borderSide: const BorderSide(
-              color: AppColors.primaryColor200
+              color: AppColors.primaryColor100
             )
           ),
           border: defaultBorder,
