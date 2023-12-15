@@ -54,7 +54,7 @@ class SignUpPage extends StatelessWidget {
             textInputAction: TextInputAction.next,
           ),
           const CustomPasswordFormField(
-            hintText: '123456#Abcd',
+            hintText: '**********',
             labelText: 'Choose your password',
           ),
           const CustomPasswordFormField(

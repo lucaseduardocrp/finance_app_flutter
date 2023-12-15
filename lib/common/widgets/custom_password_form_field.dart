@@ -69,7 +69,9 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
             color: AppColors.dark200
           ),
           hintText: widget.hintText,
-          hintStyle: AppTextStyles.inputHintText,
+          hintStyle: AppTextStyles.inputHintText.apply(
+            color: AppColors.dark100
+          ),
           focusedBorder: defaultBorder.copyWith(
             borderSide: const BorderSide(
               color: AppColors.primaryColor200,
