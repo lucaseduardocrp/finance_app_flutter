@@ -43,6 +43,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField>{
         textInputAction: widget.textInputAction,
         maxLength: widget.maxLength,
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
+        style: const TextStyle(
+          height: 1.0
+        ),
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: widget.labelText?.toUpperCase(),

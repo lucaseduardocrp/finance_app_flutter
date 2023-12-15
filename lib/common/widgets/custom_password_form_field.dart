@@ -48,6 +48,9 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
         maxLength: widget.maxLength,
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
         obscureText: isHiden,
+        style: const TextStyle(
+          height: 1.0
+        ),
         decoration: InputDecoration(
           suffixIcon: InkWell(
             onTap: (){
@@ -56,7 +59,7 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
               });
             },
             child: Icon(
-              isHiden == true ? Icons.visibility : Icons.visibility_off, 
+              isHiden ? Icons.visibility : Icons.visibility_off, 
               color: AppColors.primaryColor100 
             ),
           ),

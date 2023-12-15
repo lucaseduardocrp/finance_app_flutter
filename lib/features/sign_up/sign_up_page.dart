@@ -13,27 +13,48 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       body: ListView(
-        padding: const EdgeInsets.all(24.0),      
+        padding: const EdgeInsets.only(
+          left: 24.0,
+          right: 24.0,
+          bottom: 24.0,
+          top: 46.0,
+        ),
         children: [
-          Text(
-            'Spend Smarter', 
-            style: AppTextStyles.mediumText.apply(
-              color: AppColors.primaryColor100
-            )
+          Center(
+            child: Column(
+              children: [
+                Text(
+                  'Start Saving', 
+                  style: AppTextStyles.mediumText.apply(
+                    color: AppColors.primaryColor100
+                  )
+                ),
+                Text(
+                  'Your Money!', 
+                  style: AppTextStyles.mediumText.apply(
+                    color: AppColors.primaryColor100
+                  )
+                ),
+                const SizedBox(height: 22.0),
+                Image.asset('assets/images/signup.png'),
+              ]
+            ),
           ),
-          Text(
-            'Save More', 
-            style: AppTextStyles.mediumText.apply(
-              color: AppColors.primaryColor100
-            )
-          ),
-          Image.asset('assets/images/signup.png'),
+          const SizedBox(height: 42.0),
           const CustomTextFormField(
             labelText: 'Your name',
             hintText: 'John Doe',
+            textInputType: TextInputType.name,
+            textInputAction: TextInputAction.next,
+          ),
+          const CustomTextFormField(
+            labelText: 'Your email',
+            hintText: 'johndoe@gmail.com',
+            textInputType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
           ),
           const CustomPasswordFormField(
-            hintText: '**********',
+            hintText: '123456#Abcd',
             labelText: 'Choose your password',
           ),
           const CustomPasswordFormField(
@@ -42,7 +63,6 @@ class SignUpPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 22.0,
               vertical: 10.0
             ),
             child: PrimaryButton(
