@@ -18,6 +18,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
 
   final _formKey = GlobalKey<FormState>();
+  final _passwordController = TextEditingController(); 
 
   @override
   Widget build(BuildContext context){
@@ -70,17 +71,21 @@ class _SignUpPageState extends State<SignUpPage> {
                   hintText: 'johndoe@gmail.com',
                   textInputType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
-                   validator: Validator.validatedEmail,
+                  validator: Validator.validatedEmail,
                 ),
-                const CustomPasswordFormField(
+                CustomPasswordFormField(
+                  controller: _passwordController,
                   hintText: '**********',
                   labelText: 'Choose your password',
+                  helperText: 'Must have at least 8 characters, 1 capital letter and 1 number.',
                   validator: Validator.validatedPassword,
                 ),
-                const CustomPasswordFormField(
+                CustomPasswordFormField(
                   hintText: '**********',
                   labelText: 'Confirm your password',
-                  validator: Validator.validatedConfirmPassword,
+                  validator: (password) {
+                    return Validator.validatedConfirmPassword(password, _passwordController.text);
+                  } 
                 ),
               ],
             )

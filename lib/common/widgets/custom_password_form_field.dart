@@ -74,6 +74,8 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
         style: const TextStyle(height: 1.0),
         decoration: InputDecoration(
           helperText: _helperText,
+          helperMaxLines: 2,
+          errorMaxLines: 2,
           suffixIcon: InkWell(
             onTap: (){
               setState(() {
