@@ -6,6 +6,8 @@ import 'package:finance_app/common/widgets/custom_list_links.dart';
 import 'package:finance_app/common/widgets/custom_password_form_field.dart';
 import 'package:finance_app/common/widgets/custom_text_form_field.dart';
 import 'package:finance_app/common/widgets/primary_button.dart';
+import 'package:finance_app/features/sign_up/sign_up_controller.dart';
+import 'package:finance_app/features/sign_up/sign_up_state.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -19,6 +21,40 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController(); 
+  final _signUpController = SignUpController(); 
+
+  @override
+  void initState(){
+    super.initState();
+    _signUpController.addListener(() {
+      if(_signUpController.state is SignUpLoadingState){
+        showDialog(
+          context: context, 
+          builder: (context) => const Center(
+            child: CircularProgressIndicator(),
+          )
+        );
+      }
+      
+      if(_signUpController.state is SignUpSuccessState){
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => const Scaffold(
+            body: Center(
+              child: Text('Nova Tela'),
+            )
+          )
+        ));
+      }
+
+      if(_signUpController.state is SignUpErrorState){
+        showDialog(context: context, builder: (context) => const SizedBox(
+          height: 150.0,
+          child: Text('Erro ao logar. Tente novamente'),
+        ));
+      }
+     });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -99,6 +135,10 @@ class _SignUpPageState extends State<SignUpPage> {
               text: 'Sign Up',
               onPressed: (){
                 final valid = _formKey.currentState != null && _formKey.currentState!.validate();
+
+                if(valid){
+                  _signUpController.doSignUp();
+                }
               },
             ),
           ),
