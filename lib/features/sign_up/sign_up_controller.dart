@@ -1,9 +1,12 @@
-import 'dart:developer';
-
 import 'package:finance_app/features/sign_up/sign_up_state.dart';
+import 'package:finance_app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class SignUpController extends ChangeNotifier {
+  final AuthService _service;
+
+  SignUpController(this._service);
+
   SignUpState state = SignUpInitialState();
 
   void changeState(SignUpState newState){
@@ -11,20 +14,23 @@ class SignUpController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> doSignUp() async {
+  Future<void> signUp({
+    required String name,
+    required String email,
+    required String password
+  }) async {
     changeState(SignUpLoadingState());
     
     try {
-      await Future.delayed(const Duration(seconds: 2));
-      // throw Exception('Erro ao logar');
-      log('Usuário logado');
+      await _service.signUp(
+        name: name,
+        email: email,
+        password: password
+      );
 
       changeState(SignUpSuccessState());
-      return true;
     } catch (e) {
-      changeState(SignUpErrorState());
-      return false;
+      changeState(SignUpErrorState(e.toString()));
     }
-    
   }
 }

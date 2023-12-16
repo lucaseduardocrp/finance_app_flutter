@@ -10,6 +10,7 @@ import 'package:finance_app/common/widgets/custom_text_form_field.dart';
 import 'package:finance_app/common/widgets/primary_button.dart';
 import 'package:finance_app/features/sign_up/sign_up_controller.dart';
 import 'package:finance_app/features/sign_up/sign_up_state.dart';
+import 'package:finance_app/services/mock_auth_service.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -22,8 +23,19 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
 
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController(); 
+  final _emailController = TextEditingController(); 
   final _passwordController = TextEditingController(); 
-  final _signUpController = SignUpController(); 
+  final _signUpController = SignUpController(MockAuthService()); 
+
+  @override
+  void dispose(){
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _signUpController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState(){
@@ -48,8 +60,14 @@ class _SignUpPageState extends State<SignUpPage> {
       }
 
       if(_signUpController.state is SignUpErrorState){
+        final error = _signUpController.state as SignUpErrorState;
+
         Navigator.pop(context);
-        customModalBottomSheet(context);
+        customModalBottomSheet(
+          context: context,
+          content: error.message,
+          buttonText: 'Tentar Novamente'
+        );
       }
     });
   }
@@ -91,6 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               children: [
                 CustomTextFormField(
+                  controller: _nameController,
                   labelText: 'Your name',
                   hintText: 'John Doe',
                   textInputType: TextInputType.name,
@@ -100,7 +119,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                   validator: Validator.validatedName,
                 ),
-                const CustomTextFormField(
+                CustomTextFormField(
+                  controller: _emailController,
                   labelText: 'Your email',
                   hintText: 'johndoe@gmail.com',
                   textInputType: TextInputType.emailAddress,
@@ -135,7 +155,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 final valid = _formKey.currentState != null && _formKey.currentState!.validate();
 
                 if(valid){
-                  _signUpController.doSignUp();
+                  _signUpController.signUp(
+                    name: _nameController.text,
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );
                 }
               },
             ),
