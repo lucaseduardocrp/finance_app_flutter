@@ -1,6 +1,7 @@
 import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
 import 'package:finance_app/common/utils/uppercase_text_formatter.dart';
+import 'package:finance_app/common/utils/validator.dart';
 import 'package:finance_app/common/widgets/custom_list_links.dart';
 import 'package:finance_app/common/widgets/custom_password_form_field.dart';
 import 'package:finance_app/common/widgets/custom_text_form_field.dart';
@@ -62,44 +63,24 @@ class _SignUpPageState extends State<SignUpPage> {
                   inputFormatter: [
                     UpperCaseTextFormatter(),
                   ],
-                  validator: (value){                    
-                    if(value != null && value.isEmpty){
-                      return 'The names field is required';
-                    }
-                    return null;
-                  },
+                  validator: Validator.validatedName,
                 ),
-                CustomTextFormField(
+                const CustomTextFormField(
                   labelText: 'Your email',
                   hintText: 'johndoe@gmail.com',
                   textInputType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
-                  validator: (value){                    
-                    if(value != null && value.isEmpty){
-                      return 'The email field is required';
-                    }
-                    return null;
-                  },
+                   validator: Validator.validatedEmail,
                 ),
-                CustomPasswordFormField(
+                const CustomPasswordFormField(
                   hintText: '**********',
                   labelText: 'Choose your password',
-                  validator: (value){                    
-                    if(value != null && value.isEmpty){
-                      return 'The password field is required';
-                    }
-                    return null;
-                  },
+                  validator: Validator.validatedPassword,
                 ),
-                CustomPasswordFormField(
+                const CustomPasswordFormField(
                   hintText: '**********',
                   labelText: 'Confirm your password',
-                  validator: (value){                    
-                    if(value != null && value.isEmpty){
-                      return 'The password confirm field is required';
-                    }
-                    return null;
-                  },
+                  validator: Validator.validatedConfirmPassword,
                 ),
               ],
             )
