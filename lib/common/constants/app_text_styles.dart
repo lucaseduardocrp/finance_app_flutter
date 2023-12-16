@@ -37,6 +37,6 @@ class AppTextStyles {
   static const TextStyle inputLabelText = TextStyle(
     fontFamily: 'Inter',
     fontWeight: FontWeight.w400,
-    fontSize: 14.0,
+    fontSize: 16.0,
   );
 }
