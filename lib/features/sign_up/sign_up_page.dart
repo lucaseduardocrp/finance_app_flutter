@@ -7,8 +7,16 @@ import 'package:finance_app/common/widgets/custom_text_form_field.dart';
 import 'package:finance_app/common/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context){
@@ -42,36 +50,70 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 42.0),
-          CustomTextFormField(
-            labelText: 'Your name',
-            hintText: 'John Doe',
-            textInputType: TextInputType.name,
-            textInputAction: TextInputAction.next,
-            inputFormatter: [
-              UpperCaseTextFormatter(),
-            ],
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                CustomTextFormField(
+                  labelText: 'Your name',
+                  hintText: 'John Doe',
+                  textInputType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                  inputFormatter: [
+                    UpperCaseTextFormatter(),
+                  ],
+                  validator: (value){                    
+                    if(value != null && value.isEmpty){
+                      return 'The names field is required';
+                    }
+                    return null;
+                  },
+                ),
+                CustomTextFormField(
+                  labelText: 'Your email',
+                  hintText: 'johndoe@gmail.com',
+                  textInputType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  validator: (value){                    
+                    if(value != null && value.isEmpty){
+                      return 'The email field is required';
+                    }
+                    return null;
+                  },
+                ),
+                CustomPasswordFormField(
+                  hintText: '**********',
+                  labelText: 'Choose your password',
+                  validator: (value){                    
+                    if(value != null && value.isEmpty){
+                      return 'The password field is required';
+                    }
+                    return null;
+                  },
+                ),
+                CustomPasswordFormField(
+                  hintText: '**********',
+                  labelText: 'Confirm your password',
+                  validator: (value){                    
+                    if(value != null && value.isEmpty){
+                      return 'The password confirm field is required';
+                    }
+                    return null;
+                  },
+                ),
+              ],
+            )
           ),
-          const CustomTextFormField(
-            labelText: 'Your email',
-            hintText: 'johndoe@gmail.com',
-            textInputType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.next,
-          ),
-          const CustomPasswordFormField(
-            hintText: '**********',
-            labelText: 'Choose your password',
-          ),
-          const CustomPasswordFormField(
-            hintText: '**********',
-            labelText: 'Confirm your password',
-          ),
+      
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 10.0
             ),
             child: PrimaryButton(
               text: 'Sign Up',
-              onPressed: (){},
+              onPressed: (){
+                final valid = _formKey.currentState != null && _formKey.currentState!.validate();
+              },
             ),
           ),
           CustomListLinks(

@@ -11,8 +11,10 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputFormatter;
   final int? maxLength;
+  final String? helperText;
   final String? hintText;
   final String? labelText;
+  final FormFieldValidator<String>? validator;
 
   const CustomTextFormField({
     Key? key,
@@ -23,8 +25,10 @@ class CustomTextFormField extends StatefulWidget {
     this.textInputType,
     this.inputFormatter,
     this.maxLength,
+    this.helperText,
     this.hintText,
     this.labelText,
+    this.validator,
   }): super(key: key);
 
   @override
@@ -34,6 +38,14 @@ class CustomTextFormField extends StatefulWidget {
 class _CustomTextFormFieldState extends State<CustomTextFormField>{
   final defaultBorder = const OutlineInputBorder();
 
+  String? _helperText;
+
+  @override
+  void initState(){
+    super.initState();
+    _helperText = widget.helperText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,16 +53,27 @@ class _CustomTextFormFieldState extends State<CustomTextFormField>{
         vertical: 12.0
       ),
       child: TextFormField(
+        onChanged: (String value){
+          if(value.length == 1){
+            setState(() {
+              _helperText = null;
+            });
+          } else if(value.isEmpty){
+            setState(() {
+              _helperText = widget.helperText;
+            });
+          }
+        },
+        validator: widget.validator,
         controller: widget.controller,
         keyboardType: widget.textInputType,
         textInputAction: widget.textInputAction,
         maxLength: widget.maxLength,
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
         inputFormatters: widget.inputFormatter,
-        style: const TextStyle(
-          height: 1.0
-        ),
+        style: const TextStyle(height: 1.0),
         decoration: InputDecoration(
+          helperText: _helperText,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: widget.labelText?.toUpperCase(),
           labelStyle: AppTextStyles.inputLabelText.apply(

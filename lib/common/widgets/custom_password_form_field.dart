@@ -10,8 +10,10 @@ class CustomPasswordFormField extends StatefulWidget {
   final TextInputType? textInputType;
   final Widget? sufixIcon;
   final int? maxLength;
+  final String? helperText;
   final String? hintText;
   final String? labelText;
+  final FormFieldValidator<String>? validator;
 
   const CustomPasswordFormField({
     Key? key,
@@ -22,8 +24,10 @@ class CustomPasswordFormField extends StatefulWidget {
     this.textInputType,
     this.sufixIcon,
     this.maxLength,
+    this.helperText,
     this.hintText,
     this.labelText,
+    this.validator,
   }): super(key: key);
 
   @override
@@ -34,6 +38,13 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
   final defaultBorder = const OutlineInputBorder();
 
   bool isHiden = true;
+  String? _helperText;
+
+  @override
+  void initState(){
+    super.initState();
+    _helperText = widget.helperText;
+  }
 
   @override
   Widget build(BuildContext context){
@@ -42,16 +53,27 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField>{
         vertical: 12.0
       ),
       child: TextFormField(
+        onChanged: (String value){
+          if(value.length == 1){
+            setState(() {
+              _helperText = null;
+            });
+          } else if(value.isEmpty){
+            setState(() {
+               _helperText = widget.helperText;
+            });
+          }
+        },
+        validator: widget.validator,
         controller: widget.controller,
         keyboardType: widget.textInputType,
         textInputAction: widget.textInputAction,
         maxLength: widget.maxLength,
         textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
         obscureText: isHiden,
-        style: const TextStyle(
-          height: 1.0
-        ),
+        style: const TextStyle(height: 1.0),
         decoration: InputDecoration(
+          helperText: _helperText,
           suffixIcon: InkWell(
             onTap: (){
               setState(() {
