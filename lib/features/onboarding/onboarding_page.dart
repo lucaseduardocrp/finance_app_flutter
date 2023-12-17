@@ -16,7 +16,7 @@ class OnboardingPage extends StatelessWidget {
         children: [
           const SizedBox(height: 48.0),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Image.asset('assets/images/man.png', fit: BoxFit.contain),
           ),
           Container(
@@ -40,13 +40,13 @@ class OnboardingPage extends StatelessWidget {
                   child: PrimaryButton(
                     text: 'Get Started',
                     onPressed: (){
-                      Navigator.pushReplacementNamed(context, AppRoutes.signUp);
+                      Navigator.pushNamed(context, AppRoutes.signUp);
                     },
                   ),
                 ),
                 CustomListLinks(
                   onPressed: (){
-                    Navigator.pushReplacementNamed(context, AppRoutes.signIn);
+                    Navigator.pushNamed(context, AppRoutes.signIn);
                   },
                   children: [
                     const Text(

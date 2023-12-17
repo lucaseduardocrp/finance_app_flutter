@@ -10,7 +10,6 @@ import 'package:finance_app/common/widgets/custom_text_form_field.dart';
 import 'package:finance_app/common/widgets/primary_button.dart';
 import 'package:finance_app/features/sign_in/sign_in_controller.dart';
 import 'package:finance_app/features/sign_in/sign_in_state.dart';
-import 'package:finance_app/features/sign_up/sign_up_state.dart';
 import 'package:finance_app/services/mock_auth_service.dart';
 import 'package:flutter/material.dart';
 
@@ -58,8 +57,8 @@ class _SignInPageState extends State<SignInPage> {
         ));
       }
 
-      if(_signInController.state is SignUpErrorState){
-        final error = _signInController.state as SignUpErrorState;
+      if(_signInController.state is SignInErrorState){
+        final error = _signInController.state as SignInErrorState;
 
         Navigator.pop(context);
         customModalBottomSheet(
@@ -79,19 +78,13 @@ class _SignInPageState extends State<SignInPage> {
           left: 24.0,
           right: 24.0,
           bottom: 24.0,
-          top: 46.0,
+          top: 136.0,
         ),
         children: [
           Column(
             children: [
               Text(
-                'Start Saving', 
-                style: AppTextStyles.mediumText.apply(
-                  color: AppColors.primaryColor100
-                )
-              ),
-              Text(
-                'Your Money!', 
+                'Welcome Back!', 
                 style: AppTextStyles.mediumText.apply(
                   color: AppColors.primaryColor100
                 )
@@ -102,7 +95,6 @@ class _SignInPageState extends State<SignInPage> {
               Form(
                 key: _formKey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomTextFormField(
                       controller: _emailController,
@@ -142,7 +134,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
               CustomListLinks(
                 onPressed: (){
-                  Navigator.pushReplacementNamed(context, AppRoutes.signUp);
+                  Navigator.popAndPushNamed(context, AppRoutes.signUp);
                 },
                 children: [
                   const Text(

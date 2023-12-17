@@ -160,7 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           CustomListLinks(
             onPressed: (){
-              Navigator.pushReplacementNamed(context, AppRoutes.signIn);
+              Navigator.pushNamed(context, AppRoutes.signIn);
             },
             children: [
               const Text(

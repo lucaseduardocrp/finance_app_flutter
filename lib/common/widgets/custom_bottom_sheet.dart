@@ -23,24 +23,29 @@ Future<bool?> customModalBottomSheet({
           topRight: Radius.circular(30.0)
         )
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            content, 
-            style: AppTextStyles.mediumText18
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30.0,
-              vertical: 16.0
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 10.0,
+          horizontal: 30.0
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              content, 
+              style: AppTextStyles.mediumText18
             ),
-            child: PrimaryButton(
-              text: buttonText!,
-              onPressed: onPressed ?? () => Navigator.pop(context),
-            ),
-          )          
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 16.0
+              ),
+              child: PrimaryButton(
+                text: buttonText!,
+                onPressed: onPressed ?? () => Navigator.pop(context),
+              ),
+            )          
+          ],
+        ),
       )
     )
   );
