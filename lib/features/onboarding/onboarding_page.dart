@@ -45,7 +45,9 @@ class OnboardingPage extends StatelessWidget {
                   ),
                 ),
                 CustomListLinks(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushReplacementNamed(context, AppRoutes.signIn);
+                  },
                   children: [
                     const Text(
                       'Already have account? ',

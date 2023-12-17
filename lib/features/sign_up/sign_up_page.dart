@@ -1,5 +1,6 @@
 import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
+import 'package:finance_app/common/constants/routes.dart';
 import 'package:finance_app/common/utils/uppercase_text_formatter.dart';
 import 'package:finance_app/common/utils/validator.dart';
 import 'package:finance_app/common/widgets/custom_bottom_sheet.dart';
@@ -49,14 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
       }
       
       if(_signUpController.state is SignUpSuccessState){
-        Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => const Scaffold(
-            body: Center(
-              child: Text('Nova Tela'),
-            )
-          )
-        ));
+        Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
       }
 
       if(_signUpController.state is SignUpErrorState){
@@ -165,7 +159,9 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
           CustomListLinks(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.pushReplacementNamed(context, AppRoutes.signIn);
+            },
             children: [
               const Text(
                 'Already Have Account? ', 

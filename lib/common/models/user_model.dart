@@ -5,8 +5,8 @@ class UserModel {
   final String? password;
 
   UserModel({
+    this.name,
     required this.id,
-    required this.name,
     required this.email,
     required this.password
   });
