@@ -11,6 +11,4 @@ void setup() {
 
   locator.registerFactory<SignInController>(() => SignInController(locator.get<AuthService>()));
   locator.registerFactory<SignUpController>(() => SignUpController(locator.get<AuthService>()));
-
-  locator.get();
 }
