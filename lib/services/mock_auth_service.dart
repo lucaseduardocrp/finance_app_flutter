@@ -16,7 +16,7 @@ class MockAuthService implements AuthService {
       }
 
       return UserModel(
-        id: email.hashCode,
+        id: "${email.hashCode}",
         email: email,
         password: password,
       );
@@ -42,7 +42,7 @@ class MockAuthService implements AuthService {
       }
 
       return UserModel(
-        id: email.hashCode,
+        id: "${email.hashCode}",
         name: name,
         email: email,
         password: password
