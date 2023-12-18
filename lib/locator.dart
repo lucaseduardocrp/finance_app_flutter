@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;
 
-void setup() {
+void setupDependencies() {
   locator.registerLazySingleton<AuthService>(() => MockAuthService());
 
   locator.registerFactory<SignInController>(() => SignInController(locator.get<AuthService>()));

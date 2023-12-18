@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "230194369265",
+    "project_id": "financeapp-3cc7a",
+    "storage_bucket": "financeapp-3cc7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230194369265:android:9982ff4f28f275e5804f50",
+        "android_client_info": {
+          "package_name": "br.com.finance_app.finance_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH9CM4pdBgHI9fhoTFmYundgPyDaopVTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
