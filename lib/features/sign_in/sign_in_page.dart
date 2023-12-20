@@ -48,13 +48,7 @@ class _SignInPageState extends State<SignInPage> {
       
       if(_signInController.state is SignInSuccessState){
         Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => const Scaffold(
-            body: Center(
-              child: Text('Nova Tela'),
-            )
-          )
-        ));
+        Navigator.pushReplacementNamed(context, AppRoutes.home);
       }
 
       if(_signInController.state is SignInErrorState){

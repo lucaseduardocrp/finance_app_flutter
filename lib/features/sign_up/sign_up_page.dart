@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
       }
       
       if(_signUpController.state is SignUpSuccessState){
-        Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
+        Navigator.pushReplacementNamed(context, AppRoutes.home);
       }
 
       if(_signUpController.state is SignUpErrorState){

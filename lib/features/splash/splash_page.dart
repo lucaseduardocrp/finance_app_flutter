@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
 import 'package:finance_app/common/constants/routes.dart';
@@ -7,7 +5,6 @@ import 'package:finance_app/common/widgets/custom_circular_progress.dart';
 import 'package:finance_app/features/splash/splash_controller.dart';
 import 'package:finance_app/features/splash/splash_state.dart';
 import 'package:finance_app/locator.dart';
-import 'package:finance_app/services/secure_storage.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -18,20 +15,20 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
+  
   final _splashController = locator.get<SplashController>();
 
   @override
   void initState(){
     super.initState();
     _splashController.isUserLogged();
-    _splashController.addListener(() { });
-  
-    if(_splashController.state is SplashSuccessState){
-      // Navigate to home
-    } else{
-      Navigator.pushNamed(context, AppRoutes.onboarding);
-    }
+    _splashController.addListener(() {
+      if(_splashController.state is SplashSuccessState){
+        Navigator.pushNamed(context, AppRoutes.home);
+      } else{
+        Navigator.pushNamed(context, AppRoutes.onboarding);
+      }
+    });   
   }
 
   @override
