@@ -24,5 +24,4 @@ class SecureStorage {
   Future<void> deleteAll() async {
     return _secureStorage.deleteAll();
   }
-
 }
