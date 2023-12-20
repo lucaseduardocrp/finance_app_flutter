@@ -42,7 +42,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                 child: Icon(
                   item.icon,
                   color: currentItem ? widget.selectedItemColor : AppColors.dark100,
-                  size: 30.0,
+                  size: 34.0,
                 ),
               ), 
             ),

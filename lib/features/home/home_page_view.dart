@@ -40,6 +40,7 @@ class _HomePageViewState extends State<HomePageView> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryColor100,
+        shape: const CircleBorder(),
         onPressed: (){},
         child: const Icon(
           Icons.add,
