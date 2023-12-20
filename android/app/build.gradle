@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "br.com.finance_app.finance_app"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 33
     ndkVersion flutter.ndkVersion
 
     compileOptions {
