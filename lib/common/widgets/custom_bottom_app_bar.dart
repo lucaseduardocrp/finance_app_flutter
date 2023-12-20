@@ -33,7 +33,6 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           return Expanded(
             child: InkWell(
               onTap: item.onPressed,
-              borderRadius: BorderRadius.circular(50),
               onTapUp: (_) => setState(() {
                 _selectedItemIndex = widget.children.indexOf(item);
               }),
