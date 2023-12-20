@@ -21,6 +21,9 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      elevation: 100,
+      surfaceTintColor: AppColors.white,
+      shadowColor: Colors.black,
       shape: const CircularNotchedRectangle(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -34,10 +37,13 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
               onTapUp: (_) => setState(() {
                 _selectedItemIndex = widget.children.indexOf(item);
               }),
-              child: Icon(
-                item.icon,
-                color: currentItem ? widget.selectedItemColor : AppColors.dark100,
-                size: 30.0,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Icon(
+                  item.icon,
+                  color: currentItem ? widget.selectedItemColor : AppColors.dark100,
+                  size: 30.0,
+                ),
               ), 
             ),
           );
