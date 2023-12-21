@@ -11,6 +11,10 @@ class AppColors {
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color offWhite = Color(0xFFEEF8F7);
+
+  static const Color notification = Color(0xFFFFDE84);
+  static const Color income = Color(0xFF6FF08B);
+  static const Color expense = Color(0xFFFF6868);
   
   static const List<Color> primaryGradient = [
     AppColors.primaryColor100, 

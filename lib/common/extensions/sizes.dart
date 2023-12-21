@@ -35,6 +35,7 @@ extension SizesExt on num {
     return (this * Sizes._instance._width) / Sizes._designSize.width;
   }
   
+  /// Minha extensão para manipulação de tamanhos (PODE SER UTILIZADA PARA QUALQUER NUM INT)
   double get h {
     return (this * Sizes._instance._height) / Sizes._designSize.height;
   }

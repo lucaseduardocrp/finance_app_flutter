@@ -21,11 +21,29 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 18.0,
   );
+
+  static const TextStyle mediumText26 = TextStyle(
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w700,
+    fontSize: 26.0,
+  );
  
   static const TextStyle smallText = TextStyle(
     fontFamily: 'Inter',
     fontWeight: FontWeight.w500,
     fontSize: 14.0,
+  );
+
+  static const TextStyle smallText13 = TextStyle(
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w500,
+    fontSize: 13.0,
+  );
+
+  static const TextStyle baseText = TextStyle(
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600,
+    fontSize: 16.0,
   );
 
   static const TextStyle inputHintText = TextStyle(
