@@ -254,7 +254,7 @@ class _HomePageState extends State<HomePage>{
                   child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     padding: EdgeInsets.zero,
-                    itemCount: 4,
+                    itemCount: 8,
                     itemBuilder: (context, index) {
                       final color = index % 2 == 0 ? AppColors.income : AppColors.expense;
                       final value = index % 2 == 0 ? "+ \$ 300.00" : "- \$ 23.00";
@@ -265,7 +265,7 @@ class _HomePageState extends State<HomePage>{
                         ),
                         leading: Container(
                           decoration: BoxDecoration(
-                            color: AppColors.offWhite,
+                            color: AppColors.gray100,
                             borderRadius: BorderRadius.circular(50.0)
                           ),
                           padding: const EdgeInsets.all(8.0),
