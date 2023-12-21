@@ -1,5 +1,4 @@
 import 'package:finance_app/common/constants/routes.dart';
-import 'package:finance_app/features/home/home_page.dart';
 import 'package:finance_app/features/home/home_page_view.dart';
 import 'package:finance_app/features/onboarding/onboarding_page.dart';
 import 'package:finance_app/features/profile/profile_page.dart';
