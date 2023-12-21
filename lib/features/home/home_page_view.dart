@@ -59,17 +59,17 @@ class _HomePageViewState extends State<HomePageView> {
           CustomBottomAppBarItem(
             label: 'stats',
             icon: Icons.signal_cellular_alt,
-            onPressed: () => pageController.jumpToPage(2)
+            onPressed: () => pageController.jumpToPage(1)
           ),
           CustomBottomAppBarItem(
             label: 'wallet',
             icon: Icons.account_balance_wallet_rounded,
-            onPressed: () => pageController.jumpToPage(3)
+            onPressed: () => pageController.jumpToPage(2)
           ),
           CustomBottomAppBarItem(
             label: 'profile',
             icon: Icons.person,
-            onPressed: () => pageController.jumpToPage(4)
+            onPressed: () => pageController.jumpToPage(3)
           ),
         ],
       ),
