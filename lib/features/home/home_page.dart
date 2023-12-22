@@ -3,6 +3,10 @@ import 'dart:developer';
 import 'package:finance_app/common/constants/app_colors.dart';
 import 'package:finance_app/common/constants/app_text_styles.dart';
 import 'package:finance_app/common/extensions/sizes.dart';
+import 'package:finance_app/common/widgets/custom_circular_progress.dart';
+import 'package:finance_app/features/home/home_controller.dart';
+import 'package:finance_app/features/home/home_state.dart';
+import 'package:finance_app/locator.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,6 +18,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
   double get iconSize => MediaQuery.of(context).size.width < 360 ? 16.0 : 24.0;
+  
+  final controller = locator.get<HomeController>(); 
+
+  @override
+  void initState(){
+    super.initState();
+    controller.getAllTransactions();
+  }
 
   @override
   Widget build(BuildContext context){
@@ -251,44 +263,67 @@ class _HomePageState extends State<HomePage>{
                   ),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    itemCount: 8,
-                    itemBuilder: (context, index) {
-                      final color = index % 2 == 0 ? AppColors.income : AppColors.expense;
-                      final value = index % 2 == 0 ? "+ \$ 300.00" : "- \$ 23.00";
+                  child: AnimatedBuilder(
+                    animation: controller,
+                    builder: (context, child) {
+                      if(controller.state is HomeLoadingState){
+                        return const CustomCircularProgress();
+                      }
                       
-                      return ListTile(
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 22.0,
-                        ),
-                        leading: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.gray100,
-                            borderRadius: BorderRadius.circular(50.0)
-                          ),
-                          padding: const EdgeInsets.all(8.0),
-                          child: const Icon(
-                            Icons.monetization_on_outlined
-                          ),
-                        ),
-                        title: const Text(
-                          'UpWork',
-                          style: AppTextStyles.baseText,
-                        ),
-                        subtitle: const Text(
-                          '2024-02-11',
-                          style: AppTextStyles.smallText13,
-                        ),
-                        trailing: Text(
-                          value,
-                          style: AppTextStyles.mediumText18.apply(
-                            color: color
-                          ),
-                        ),
+                      if(controller.state is HomeErrorState){
+                        return const Center(
+                          child: Text('An error has occurred'),
+                        );
+                      }
+                    
+                      if(controller.transactions.isEmpty){
+                        return const Center(
+                          child: Text('There is not transactions at this time'),
+                        );
+                      }
+
+                      return ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        padding: EdgeInsets.zero,
+                        itemCount: controller.transactions.length,
+                        itemBuilder: (context, index) {
+                          final item = controller.transactions[index];
+
+                          final color = item.value.isNegative ? AppColors.expense : AppColors.income;
+                          final value = '\$ ${item.value.toStringAsFixed(2)}';
+                          
+                          return ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 22.0,
+                            ),
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.gray100,
+                                borderRadius: BorderRadius.circular(50.0)
+                              ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: const Icon(
+                                Icons.monetization_on_outlined
+                              ),
+                            ),
+                            title: Text(
+                              item.title,
+                              style: AppTextStyles.baseText,
+                            ),
+                            subtitle: Text(
+                              DateTime.fromMillisecondsSinceEpoch(item.date).toString(),
+                              style: AppTextStyles.smallText13,
+                            ),
+                            trailing: Text(
+                              value,
+                              style: AppTextStyles.mediumText18.apply(
+                                color: color
+                              ),
+                            ),
+                          );
+                        }
                       );
-                    }
+                    },
                   ),
                 ),
               ],
